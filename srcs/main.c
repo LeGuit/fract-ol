@@ -10,15 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "fractol.h"
 
-static void			init_data(t_data *data)
+static void			witch_fract(char *arg)
 {
-	data->state = 1;
-	data->nbpath = 0;
-	data->nbroom = 0;
-	data->com = 0;
-	data->anthill = VECT_INI(t_room);
+	ft_tolower(arg);
+	if (!ft_strcmp(arg, "julia"))
+		julia();
+	else if (!ft_strcmp(arg, "mandelbrot"))
+		mandelbrot();
+	else
+		error_input();
 }
 
 int					main(int ac, char **av)
@@ -27,9 +29,6 @@ int					main(int ac, char **av)
 
 	if (ac != 2)
 		error_input();
-	init_data(&data);
-	get_file(av[1], &data);
-	print_data(&data);
-	// path_finding(&data);
+	witch_fract(av[1]);
 	return (0);
 }
