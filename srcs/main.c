@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-static void			witch_fract(char *arg)
+static void			which_fract(char *arg)
 {
 	ft_tolower(arg);
 	if (!ft_strcmp(arg, "julia"))
@@ -29,6 +29,6 @@ int					main(int ac, char **av)
 
 	if (ac != 2)
 		error_input();
-	witch_fract(av[1]);
+	which_fract(av[1]);
 	return (0);
 }
