@@ -42,6 +42,8 @@ typedef struct		s_data
 	t_cplx			z0;
 	t_cplx			c;
 	char			name[16];
+	// float			deltax;
+	// float			deltay;
 }					t_data;
 
 typedef struct		s_vec2fc
