@@ -21,9 +21,19 @@ LIBFT = 	-L./libft -lft \
 SRCS_DIR =	srcs
 OBJS_DIR =	objs
 
-LIBS =	libft/libft.a
+LIBS =	libft/libft.a \
+		libmlx/libmlx.a
 
 LIST =	main \
+		error/error \
+		fract_data/buddha \
+		fract_data/mandelbrot \
+		fract_data/julia \
+		mlx/new_image \
+		mlx/mlx_init \
+		mlx/key_hook
+
+
 
 SRCS := $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(LIST)))
 OBJS := $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(LIST)))

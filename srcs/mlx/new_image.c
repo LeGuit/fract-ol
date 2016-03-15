@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   new_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 12:05:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/03/07 12:06:11 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/02/23 17:59:04 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/02/23 17:59:05 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "mlx.h"
 
-static void			which_fract(char *arg, t_data *data)
+int				ft_mlx_image_init(void *mlx_ptr, t_image *image, int width,
+				int height)
 {
-	if (!ft_strcmp(arg, "julia"))
-		julia(data);
-	else if (!ft_strcmp(arg, "mandelbrot"))
-		mandelbrot(data);
-	else if (!ft_strcmp(arg, "buddha"))
-		buddha(data);
-	else
-		error_input();
-}
-
-int					main(int ac, char **av)
-{
-	t_data			data;
-
-	if (ac != 2)
-		error_input();
-	which_fract(av[1], &data);
-	mlx_start(&data);
+	image->ptr = mlx_new_image(mlx_ptr, width, height);
+	image->data = mlx_get_data_addr(image->ptr, &image->bpp, &image->size_line,
+									&image->endian);
+	image->width = width;
+	image->height = height;
 	return (0);
 }

@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/15 12:31:14 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/03/15 12:31:16 by gwoodwar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef _FRACTOL_H
 # define _FRACTOL_H
 
 # include "libft.h"
 
-# define W_WIDTH				1600
-# define W_HEIGHT				1200
+# define IT_MAX				50
 
 # define ESC				53
 typedef struct		s_cplx
@@ -14,18 +24,7 @@ typedef struct		s_cplx
 	int				pi;
 	int				mod;
 	int				arg;
-}					t_cplx
-
-typedef struct		s_image
-{
-	void			*ptr;
-	int				bpp;
-	int				size_line;
-	int				endian;
-	char			*data;
-	int				width;
-	int				height;
-}					t_image;
+}					t_cplx;
 
 typedef struct		s_mlx
 {
@@ -36,26 +35,33 @@ typedef struct		s_mlx
 
 }					t_mlx;
 
-typedef struct		s_vec3i
+typedef struct		s_data
 {
-	int				x;
-	int				y;
-	int				z;
-}					t_vec3i;
+	t_view			v_world;
+	t_mlx			*mlx;
+	t_cplx			z0;
+	int				c;
+	char			name[16];
+}					t_data;
 
 /*
-** PARSING
+** FRACTALS
 */
-
+void				julia(t_data *data);
+void				buddha(t_data *data);
+void				mandelbrot(t_data *data);
+/*
+** MLX
+*/
+void				mlx_start(t_data *data);
+int					ft_mlx_image_init(void *mlx_ptr, t_image *image, int width,
+					int height);
+int					key_hook(int key, void *data);
 
 /*
 ** ERROR
 */
 void				error_input();
-
-/*
-** PATH FINDING
-*/
 
 
 /*

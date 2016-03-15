@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/07 12:05:57 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/03/07 12:06:11 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/03/15 13:07:34 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/03/15 13:07:44 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void			which_fract(char *arg, t_data *data)
+static void			key_esc(void)
 {
-	if (!ft_strcmp(arg, "julia"))
-		julia(data);
-	else if (!ft_strcmp(arg, "mandelbrot"))
-		mandelbrot(data);
-	else if (!ft_strcmp(arg, "buddha"))
-		buddha(data);
-	else
-		error_input();
+	ft_printf("ESC pressed:\nEXIT SUCCESS");
+	exit(0);
 }
 
-int					main(int ac, char **av)
+int					key_hook(int key, void *data)
 {
-	t_data			data;
-
-	if (ac != 2)
-		error_input();
-	which_fract(av[1], &data);
-	mlx_start(&data);
+	(void)data;
+	if (key == ESC)
+		key_esc();
 	return (0);
 }
