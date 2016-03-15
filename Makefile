@@ -31,7 +31,9 @@ LIST =	main \
 		fract_data/julia \
 		mlx/new_image \
 		mlx/mlx_init \
-		mlx/key_hook
+		mlx/key_hook \
+		draw/draw \
+		draw/homothety
 
 
 

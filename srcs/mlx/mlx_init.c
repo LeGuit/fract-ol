@@ -15,10 +15,10 @@
 
 static void			init_views(t_data *data, t_mlx *mlx)
 {
-	data->v_world.xmin = -20;
-	data->v_world.xmax = 20;
-	data->v_world.ymin = -20;
-	data->v_world.ymax = 20;
+	data->v_world.xmin = -1;
+	data->v_world.xmax = 1;
+	data->v_world.ymin = -1;
+	data->v_world.ymax = 1;
 	mlx->v_screen.xmin = 0.f;
 	mlx->v_screen.xmax = (float)mlx->screen.width;
 	mlx->v_screen.ymin = 0.f;
@@ -35,5 +35,6 @@ void				mlx_start(t_data *data)
 	ft_mlx_image_init(mlx.mlx_ptr, &mlx.screen, W_WIDTH, W_HEIGHT);
 	init_views(data, &mlx);
 	mlx_key_hook(mlx.win_ptr, key_hook, data);
+	// mlx_mouse_hook(mlx.win_ptr, mouse_hook, data);
 	mlx_loop(mlx.mlx_ptr);
 }

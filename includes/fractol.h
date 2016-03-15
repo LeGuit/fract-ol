@@ -20,10 +20,8 @@
 # define ESC				53
 typedef struct		s_cplx
 {
-	int				pr;
-	int				pi;
-	int				mod;
-	int				arg;
+	float			pr;
+	float			pi;
 }					t_cplx;
 
 typedef struct		s_mlx
@@ -40,10 +38,16 @@ typedef struct		s_data
 	t_view			v_world;
 	t_mlx			*mlx;
 	t_cplx			z0;
-	int				c;
+	t_cplx			c;
 	char			name[16];
 }					t_data;
 
+typedef struct		s_vec2fc
+{
+	float			x;
+	float			y;
+	int				color;
+}					t_vec2fc;
 /*
 ** FRACTALS
 */
@@ -57,6 +61,8 @@ void				mlx_start(t_data *data);
 int					ft_mlx_image_init(void *mlx_ptr, t_image *image, int width,
 					int height);
 int					key_hook(int key, void *data);
+void				draw(t_data *data);
+void				homothety(t_vec2fc *v, t_data *data, t_view *v_screen);
 
 /*
 ** ERROR
