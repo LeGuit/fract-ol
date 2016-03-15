@@ -14,5 +14,6 @@
 
 void				buddha(t_data *data)
 {
+	ft_bzero(data->name ,16);
 	ft_strcpy(data->name, "buddha");
 }

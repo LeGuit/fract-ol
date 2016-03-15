@@ -14,6 +14,7 @@
 
 void				mandelbrot(t_data *data)
 {
+	ft_bzero(data->name ,16);	
 	ft_strcpy(data->name, "mandelbrot");
 	data->z0.pr = 0;
 	data->z0.pi = 0;

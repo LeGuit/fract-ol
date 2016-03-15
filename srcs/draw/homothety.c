@@ -14,10 +14,9 @@
 
 void				homothety(t_vec2fc *v, t_data *data, t_view *v_screen)
 {
-	v->x = (v->x - data->v_world.xmin)
-		/ (data->v_world.xmax - data->v_world.xmin)
-		* (v_screen->xmax - v_screen->xmin) + v_screen->xmin;
-	v->y = (v->x - data->v_world.ymin)
-		/ (data->v_world.ymax - data->v_world.ymin)
-		* (v_screen->ymax - v_screen->ymin) + v_screen->ymin;
+	(void)data;
+	v->x = v->x / v_screen->xmax * (data->v_world.xmax - data->v_world.xmin)
+			+ data->v_world.xmin;
+	v->y = v->y / v_screen->ymax * (data->v_world.ymax - data->v_world.ymin)
+			+ data->v_world.ymin;
 }

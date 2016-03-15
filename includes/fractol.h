@@ -16,6 +16,8 @@
 # include "libft.h"
 
 # define IT_MAX				50
+# define C_MIN				0xFF0000
+# define C_MAX				0x00FF00
 
 # define ESC				53
 typedef struct		s_cplx

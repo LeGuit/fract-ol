@@ -14,5 +14,6 @@
 
 void				julia(t_data *data)
 {
+	ft_bzero(data->name ,16);
 	ft_strcpy(data->name, "julia");
 }
