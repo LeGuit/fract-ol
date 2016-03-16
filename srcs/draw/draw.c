@@ -24,27 +24,11 @@ void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data)
 
 static int			get_color(t_cplx *c, t_data *data)
 {
-	t_cplx			z;
-	float			tmp;
-	int				it;
-
-	z.pr = data->z0.pr;
-	z.pi = data->z0.pi;
-	it = 0;
-	while (it < data->it_max)
-	{
-		tmp = z.pr;
-		z.pr = z.pr * z.pr - z.pi * z.pi + c->pr;
-		z.pi = 2 * z.pi * tmp + c->pi;
-
-		if (z.pr * z.pr + z.pi * z.pi >= 4)
-			break ;
-		it++;
-	}
-	if (it == data->it_max)
-		return (0x0);
-	return (mix_color(C_MIN, C_MAX, (float)it / (float)data->it_max));
-	
+	if (!ft_strcmp(data->name, "mandelbrot"))
+		return (gc_mandelbrot(c, data));
+	// else if (!ft_strcmp(data->name, "julia"))
+	// 	return (gc_julia(c, data));
+	return (0);
 }
 
 void				draw(t_data *data)

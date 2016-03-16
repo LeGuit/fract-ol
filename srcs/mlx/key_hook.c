@@ -57,8 +57,8 @@ int					key_hook(int key, t_data *data)
 		data->it_max = (float)(data->it_max) * 1.2f;
 	else if (key == O)
 		data->it_max = (float)(data->it_max) / 1.2f;
-	// else if (key == RETURN)
-	// 	key_return((t_data *)data);
+	else if (key == RETURN)
+		init_views(data);
 	else if (key == LARROW || key == RARROW || key == DARROW || key == UARROW)
 		key_trans(key, (t_data *)data);
 	return (1);

@@ -12,6 +12,11 @@
 
 #include "fractol.h"
 
+// int					gc_julia(t_cplx *c, t_data *data)
+// {
+	
+// }
+
 void				julia(t_data *data)
 {
 	ft_bzero(data->name ,16);

@@ -32,6 +32,7 @@ LIST =	main \
 		mlx/new_image \
 		mlx/mlx_init \
 		mlx/key_hook \
+		mlx/zoom_hook \
 		draw/draw
 
 

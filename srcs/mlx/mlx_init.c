@@ -12,8 +12,8 @@
 
 #include "fractol.h"
 #include "mlx.h"
-//no stat for reset
-static void			init_views(t_data *data)
+
+void				init_views(t_data *data)
 {
 	data->bl = (t_cplx){-2.f, -1.f};
 	data->delta = (t_cplx){3.f / (float)data->mlx->screen.width,
@@ -39,7 +39,7 @@ void				mlx_start(t_data *data)
 	ft_mlx_image_init(mlx.mlx_ptr, &mlx.screen, W_WIDTH, W_HEIGHT);
 	init_views(data);
 	mlx_key_hook(mlx.win_ptr, key_hook, data);
-	// mlx_mouse_hook(mlx.win_ptr, mouse_hook, data);
+	mlx_mouse_hook(mlx.win_ptr, mouse_hook, data);
 	mlx_loop_hook(mlx.mlx_ptr, fdf_loop, data);
 	mlx_loop(mlx.mlx_ptr);
 }

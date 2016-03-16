@@ -12,6 +12,30 @@
 
 #include "fractol.h"
 
+int					gc_mandelbrot(t_cplx *c, t_data *data)
+{
+	t_cplx			z;
+	float			tmp;
+	int				it;
+
+	z.pr = data->z0.pr;
+	z.pi = data->z0.pi;
+	it = 0;
+	while (it < data->it_max)
+	{
+		tmp = z.pr;
+		z.pr = z.pr * z.pr - z.pi * z.pi + c->pr;
+		z.pi = 2 * z.pi * tmp + c->pi;
+
+		if (z.pr * z.pr + z.pi * z.pi >= 4)
+			break ;
+		it++;
+	}
+	if (it == data->it_max)
+		return (0x0);
+	return (mix_color(C_MIN, C_MAX, (float)it / (float)data->it_max));
+}
+
 void				mandelbrot(t_data *data)
 {
 	ft_bzero(data->name ,16);	
