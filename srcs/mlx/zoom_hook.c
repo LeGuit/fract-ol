@@ -14,23 +14,27 @@
 
 int					mouse_zoom_in(t_data *data, int x, int y)
 {
-	data->bl.pr += x;
-	data->bl.pr += y;
-	ft_printf("x: %d\ty: %d\n", x, y);
-	draw(data);
-	data->bl.pr = 0;//replace with zoom
-	data->bl.pr = 0;
+	t_cplx			zoom;
+
+	zoom.pr = data->bl.pr + (float)x * data->delta.pr;
+	zoom.pi = data->bl.pi + (float)y * data->delta.pi;
 	data->delta.pr /= 1.1f;
 	data->delta.pi /= 1.1f;
-
+	data->bl.pr = zoom.pr - (float)x * data->delta.pr;
+	data->bl.pi = zoom.pi - (float)y * data->delta.pi;
 	return (0);
 }
 
 int					mouse_zoom_out(t_data *data, int x, int y)
 {
-	ft_printf("x: %d\ty: %d\n", x, y);
+	t_cplx			zoom;
+
+	zoom.pr = data->bl.pr + (float)x * data->delta.pr;
+	zoom.pi = data->bl.pi + (float)y * data->delta.pi;
 	data->delta.pr *= 1.1f;
 	data->delta.pi *= 1.1f;
+	data->bl.pr = zoom.pr - (float)x * data->delta.pr;
+	data->bl.pi = zoom.pi - (float)y * data->delta.pi;
 	return (0);
 }
 
