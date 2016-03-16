@@ -17,11 +17,13 @@ int					mouse_zoom_in(t_data *data, int x, int y)
 	t_cplx			zoom;
 
 	zoom.pr = data->bl.pr + (float)x * data->delta.pr;
-	zoom.pi = data->bl.pi + (float)y * data->delta.pi;
+	zoom.pi = data->bl.pi +
+			((float)data->mlx->screen.height - (float)y) * data->delta.pi;
 	data->delta.pr /= 1.1f;
 	data->delta.pi /= 1.1f;
 	data->bl.pr = zoom.pr - (float)x * data->delta.pr;
-	data->bl.pi = zoom.pi - (float)y * data->delta.pi;
+	data->bl.pi = zoom.pi -
+			((float)data->mlx->screen.height - (float)y) * data->delta.pi;
 	return (0);
 }
 
@@ -29,11 +31,13 @@ int					mouse_zoom_out(t_data *data, int x, int y)
 {
 	t_cplx			zoom;
 
-	zoom.pr = data->bl.pr + (float)x * data->delta.pr;
+	zoom.pr = data->bl.pr +
+			((float)data->mlx->screen.width - (float)x) * data->delta.pr;
 	zoom.pi = data->bl.pi + (float)y * data->delta.pi;
 	data->delta.pr *= 1.1f;
 	data->delta.pi *= 1.1f;
-	data->bl.pr = zoom.pr - (float)x * data->delta.pr;
+	data->bl.pr = zoom.pr -
+			((float)data->mlx->screen.width - (float)x) * data->delta.pr;
 	data->bl.pi = zoom.pi - (float)y * data->delta.pi;
 	return (0);
 }

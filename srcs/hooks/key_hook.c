@@ -18,18 +18,25 @@ static void			key_esc(void)
 	exit(0);
 }
 
-static int			key_zoom_in(t_data *data)
+static int			key_m_set(t_data *data)
 {
-	data->delta.pr /= 1.1f;
-	data->delta.pi /= 1.1f;
-
+	if (data->mouse_set == 0)
+		data->mouse_set = 1;
+	else
+		data->mouse_set = 0;
 	return (0);
 }
 
-static int			key_zoom_out(t_data *data)
+static int			key_color(t_data *data)
 {
-	data->delta.pr *= 1.1f;
-	data->delta.pi *= 1.1f;
+	if (data->c_max == 0x00FF00)
+		data->c_max = 0xFF0000;
+	else if (data->c_max == 0xFF0000)
+		data->c_max = 0x0000FF;
+	else if (data->c_max == 0x0000FF)
+		data->c_max = 0xFFFFFF;
+	else if (data->c_max == 0xFFFFFF)
+		data->c_max = 0x00FF00;
 	return (0);
 }
 
@@ -47,11 +54,7 @@ static void			key_trans(int key, t_data *data)
 
 int					key_hook(int key, t_data *data)
 {
-	if (key == PLUS)
-		key_zoom_in((t_data *)data);
-	else if (key == MINUS)
-		key_zoom_out((t_data *)data);
-	else if (key == ESC)
+	if (key == ESC)
 		key_esc();
 	else if (key == P)
 		data->it_max = (float)(data->it_max) * 1.2f;
@@ -61,5 +64,9 @@ int					key_hook(int key, t_data *data)
 		init_views(data);
 	else if (key == LARROW || key == RARROW || key == DARROW || key == UARROW)
 		key_trans(key, (t_data *)data);
-	return (1);
+	else if (key == C)
+		key_color(data);
+	else if (key == M_SET)
+		key_m_set(data);
+	return (0);
 }

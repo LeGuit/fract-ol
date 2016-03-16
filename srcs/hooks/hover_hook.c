@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   hover_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/15 13:04:00 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/03/15 13:04:02 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/03/16 14:48:23 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/03/16 14:48:25 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void					error_input(void)
+int					hover_hook(int x, int y, t_data *data)
 {
-	ft_putendl_fd("fractol: invalid input", 2);
-	ft_putendl_fd("usage: ./fractol [fractal name]", 2);
-	ft_putendl_fd("valid inputs:\n   -julia\n   -mandelbrot\n   -buddha", 2);
-	exit(0);
+	if (data->mouse_set == 0)
+		return (0);
+	if (x < 0 || x > data->mlx->screen.width
+		|| y < 0 || y > data->mlx->screen.height)
+		return (0);
+	data->z0.pr = data->bl.pr + (float)x * data->delta.pr;
+	data->z0.pi = data->bl.pi +
+			((float)data->mlx->screen.height - (float)y) * data->delta.pi;
+	return (0);
 }

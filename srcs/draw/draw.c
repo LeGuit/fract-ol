@@ -20,14 +20,14 @@ void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data)
 {
 	z->pr = data->bl.pr + pixel->x * data->delta.pr;
 	z->pi = data->bl.pi + pixel->y * data->delta.pi;
-}		
+}
 
 static int			get_color(t_cplx *c, t_data *data)
 {
 	if (!ft_strcmp(data->name, "mandelbrot"))
 		return (gc_mandelbrot(c, data));
-	// else if (!ft_strcmp(data->name, "julia"))
-	// 	return (gc_julia(c, data));
+	else if (!ft_strcmp(data->name, "julia"))
+		return (gc_julia(c, data));
 	return (0);
 }
 

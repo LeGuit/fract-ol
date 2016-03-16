@@ -19,10 +19,6 @@
 # define W_HEIGHT				600
 # define ZOOM					30
 
-// # define IT_MAX				50`
-# define C_MIN				0x000000
-# define C_MAX				0x0000FF
-
 # define ESC				53
 # define PLUS				69
 # define MINUS				78
@@ -32,10 +28,14 @@
 # define UARROW				126
 # define P					35
 # define O					31
+# define C					8
+# define M_SET				1
 # define RETURN				36
 # define M_PLUS				5
 # define M_MINUS			4
 # define M_RETURN			3
+# define MOTION_MASK		(1L<<6)
+# define MOTION_NOTIFY		6
 
 typedef struct		s_cplx
 {
@@ -58,7 +58,10 @@ typedef struct		s_data
 	t_cplx			delta;
 	t_cplx			z0;
 	t_cplx			c;
+	int				c_min;
+	int				c_max;
 	int				it_max;
+	int				mouse_set;
 }					t_data;
 
 typedef struct		s_vec2fc
@@ -71,7 +74,7 @@ typedef struct		s_vec2fc
 ** FRACTALS
 */
 void				julia(t_data *data);
-// int					gc_julia(t_cplx *c, t_data *data);
+int					gc_julia(t_cplx *c, t_data *data);
 void				buddha(t_data *data);
 void				mandelbrot(t_data *data);
 int					gc_mandelbrot(t_cplx *c, t_data *data);
@@ -89,15 +92,10 @@ void				draw(t_data *data);
 void				init_views(t_data *data);
 int					mouse_hook(int button, int x, int y, void *data);
 int					key_hook(int key, t_data *data);
+int					hover_hook(int x, int y, t_data *data);
 
 /*
 ** ERROR
 */
 void				error_input();
-
-
-/*
-** DEBUG
-*/
-
 #endif

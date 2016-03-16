@@ -31,8 +31,9 @@ LIST =	main \
 		fract_data/julia \
 		mlx/new_image \
 		mlx/mlx_init \
-		mlx/key_hook \
-		mlx/zoom_hook \
+		hooks/key_hook \
+		hooks/zoom_hook \
+		hooks/hover_hook \
 		draw/draw
 
 

@@ -15,10 +15,12 @@
 
 void				init_views(t_data *data)
 {
-	data->bl = (t_cplx){-2.f, -1.f};
 	data->delta = (t_cplx){3.f / (float)data->mlx->screen.width,
 		2.f / (float)data->mlx->screen.height};
 	data->it_max = 50;
+	data->mouse_set = 0;
+	data->c_min = 0x000000;
+	data->c_max = 0x00FF00;
 }
 
 static int			fdf_loop(t_data *data)
@@ -40,6 +42,7 @@ void				mlx_start(t_data *data)
 	init_views(data);
 	mlx_key_hook(mlx.win_ptr, key_hook, data);
 	mlx_mouse_hook(mlx.win_ptr, mouse_hook, data);
+	mlx_hook(mlx.win_ptr, MOTION_NOTIFY, MOTION_MASK, hover_hook, data);
 	mlx_loop_hook(mlx.mlx_ptr, fdf_loop, data);
 	mlx_loop(mlx.mlx_ptr);
 }
