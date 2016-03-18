@@ -21,13 +21,19 @@ void				init_views(t_data *data)
 	data->mouse_set = 0;
 	data->c_min = 0x000000;
 	data->c_max = 0x00FF00;
+	data->diverg = 0x000000;
 }
 
 static int			fdf_loop(t_data *data)
 {
 	ft_bzero(data->mlx->screen.data, data->mlx->screen.width
 		* data->mlx->screen.height * 4);
-	draw(data);
+	if (ft_strequ(data->name, "sierpinski"))
+		draw_sierpinski(data);
+	else if (ft_strequ(data->name, "mandelbrot"))
+		draw(data, &gc_mandelbrot);
+	else
+		draw(data, &gc_julia);
 	return (0);
 }
 

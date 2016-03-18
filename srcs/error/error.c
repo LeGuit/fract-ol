@@ -16,6 +16,7 @@ void					error_input(void)
 {
 	ft_putendl_fd("fractol: invalid input", 2);
 	ft_putendl_fd("usage: ./fractol [fractal name]", 2);
-	ft_putendl_fd("valid inputs:\n   -julia\n   -mandelbrot\n   -buddha", 2);
+	ft_putendl_fd("valid inputs:\n\t-julia\n\t-mandelbrot\n\
+	-sierpinski\n\t-douady", 2);
 	exit(0);
 }

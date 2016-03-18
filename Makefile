@@ -26,12 +26,14 @@ LIBS =	libft/libft.a \
 
 LIST =	main \
 		error/error \
-		fract_data/buddha \
 		fract_data/mandelbrot \
 		fract_data/julia \
+		fract_data/sierpinski \
+		fract_data/douady_rabbit \
 		mlx/new_image \
 		mlx/mlx_init \
 		hooks/key_hook \
+		hooks/key_hook_bis \
 		hooks/zoom_hook \
 		hooks/hover_hook \
 		draw/draw

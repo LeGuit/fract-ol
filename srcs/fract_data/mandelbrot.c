@@ -31,7 +31,7 @@ int					gc_mandelbrot(t_cplx *c, t_data *data)
 		it++;
 	}
 	if (it == data->it_max)
-		return (0x0);
+		return (data->diverg);
 	return (mix_color(data->c_min, data->c_max,
 		(float)it / (float)data->it_max));
 }

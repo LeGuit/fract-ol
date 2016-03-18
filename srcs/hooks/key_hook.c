@@ -68,5 +68,7 @@ int					key_hook(int key, t_data *data)
 		key_color(data);
 	else if (key == M_SET)
 		key_m_set(data);
+	else if (key == NEG)
+		key_neg(data);
 	return (0);
 }

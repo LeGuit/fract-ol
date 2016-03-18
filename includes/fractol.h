@@ -36,6 +36,7 @@
 # define M_RETURN			3
 # define MOTION_MASK		(1L<<6)
 # define MOTION_NOTIFY		6
+# define NEG				45
 
 typedef struct		s_cplx
 {
@@ -62,6 +63,7 @@ typedef struct		s_data
 	int				c_max;
 	int				it_max;
 	int				mouse_set;
+	int				diverg;
 }					t_data;
 
 typedef struct		s_vec2fc
@@ -75,8 +77,10 @@ typedef struct		s_vec2fc
 */
 void				julia(t_data *data);
 int					gc_julia(t_cplx *c, t_data *data);
-void				buddha(t_data *data);
 void				mandelbrot(t_data *data);
+void				sierpinski(t_data *data);
+int					draw_sierpinski(t_data *data);
+void				douady(t_data *data);
 int					gc_mandelbrot(t_cplx *c, t_data *data);
 void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data);
 /*
@@ -85,7 +89,7 @@ void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data);
 void				mlx_start(t_data *data);
 int					ft_mlx_image_init(void *mlx_ptr, t_image *image, int width,
 					int height);
-void				draw(t_data *data);
+void				draw(t_data *data, int (*funct)(t_cplx *, t_data *));
 /*
 ** HOOK
 */
@@ -93,7 +97,7 @@ void				init_views(t_data *data);
 int					mouse_hook(int button, int x, int y, void *data);
 int					key_hook(int key, t_data *data);
 int					hover_hook(int x, int y, t_data *data);
-
+int					key_neg(t_data *data);
 /*
 ** ERROR
 */

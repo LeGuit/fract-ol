@@ -1,33 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   sierpinski.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gwoodwar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/15 14:54:29 by gwoodwar          #+#    #+#             */
-/*   Updated: 2016/03/15 14:54:40 by gwoodwar         ###   ########.fr       */
+/*   Created: 2016/03/18 10:33:44 by gwoodwar          #+#    #+#             */
+/*   Updated: 2016/03/18 10:33:52 by gwoodwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "mlx.h"
-#define CAST(type, ptr)				((type)(ptr))
 
-#include <stdio.h>
-
-void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data)
+static float		pow(int nb, int pow)
 {
-	z->pr = data->bl.pr + pixel->x * data->delta.pr;
-	z->pi = data->bl.pi + pixel->y * data->delta.pi;
+	int				i;
+
+	i = 0;
+	while (i < pow)
+	{
+		nb *= nb;
+		i++;
+	}
+	return ((float)nb);
 }
 
-void				draw(t_data *data, int (*funct)(t_cplx *, t_data *))
+static int			gc_sierpinski(t_cplx *z, t_data *data)
 {
-	t_cplx			z;
-	t_vec3i			pixel;
+	int				it;
+	float			tmp;
+
+	it = 1;
+	if (z->pr < 0 || z->pr > 3 || z->pi < 0 || z->pi > 3)
+		return (0);
+	while (it < data->it_max)
+	{
+		tmp = (z->pr / pow(3, it));
+		if (tmp > 1.f && tmp < 2.f)
+		{
+			tmp = (z->pi / pow(3, it));
+			if (tmp > 1.f && tmp < 2.f)
+				break;
+		}
+		it++;
+	}
+	return (mix_color(data->c_min, data->c_max, it));
+}
+
+int					draw_sierpinski(t_data *data)
+{
 	int				x;
 	int				y;
+	t_vec3i			pixel;
+	t_cplx			z;
 
 	x = 0;
 	while (x < data->mlx->screen.width)
@@ -37,7 +63,7 @@ void				draw(t_data *data, int (*funct)(t_cplx *, t_data *))
 		{
 			pixel = (t_vec3i){x, y, 0};
 			pix_to_cplx(&z, &pixel, data);
-			pixel.z = funct(&z, data);
+			pixel.z = gc_sierpinski(&z, data);
 			ft_put_pix_to_img(&pixel, &data->mlx->screen);
 			y++;
 		}
@@ -45,4 +71,12 @@ void				draw(t_data *data, int (*funct)(t_cplx *, t_data *))
 	}
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr,
 				data->mlx->screen.ptr, 0, 0);
+	return (0);
+}
+
+void				sierpinski(t_data *data)
+{
+	ft_bzero(data->name, 16);
+	ft_strcpy(data->name, "sierpinski");
+	data->bl = (t_cplx){-0.1f, -0.f};
 }
