@@ -19,8 +19,8 @@ int					hover_hook(int x, int y, t_data *data)
 	if (x < 0 || x > data->mlx->screen.width
 		|| y < 0 || y > data->mlx->screen.height)
 		return (0);
-	data->z0.pr = data->bl.pr + (float)x * data->delta.pr;
+	data->z0.pr = data->bl.pr + (double)x * data->delta.pr;
 	data->z0.pi = data->bl.pi +
-			((float)data->mlx->screen.height - (float)y) * data->delta.pi;
+			((double)data->mlx->screen.height - (double)y) * data->delta.pi;
 	return (0);
 }

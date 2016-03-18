@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include <stdio.h>
 
-static float		pow(int nb, int pow)
+static double		pow(int nb, int pow)
 {
 	int				i;
 
@@ -24,13 +24,13 @@ static float		pow(int nb, int pow)
 		nb *= nb;
 		i++;
 	}
-	return ((float)nb);
+	return ((double)nb);
 }
 
 static int			gc_sierpinski(t_cplx *z, t_data *data)
 {
 	int				it;
-	float			tmp;
+	double			tmp;
 
 	it = 1;
 	if (z->pr < 0 || z->pr > 3 || z->pi < 0 || z->pi > 3)
@@ -42,11 +42,11 @@ static int			gc_sierpinski(t_cplx *z, t_data *data)
 		{
 			tmp = (z->pi / pow(3, it));
 			if (tmp > 1.f && tmp < 2.f)
-				break;
+				return (0);
 		}
 		it++;
 	}
-	return (mix_color(data->c_min, data->c_max, it));
+	return (mix_color(data->c_min, data->c_max, (double)it));
 }
 
 int					draw_sierpinski(t_data *data)
@@ -63,8 +63,8 @@ int					draw_sierpinski(t_data *data)
 		while (y < data->mlx->screen.height)
 		{
 			pixel = (t_vec3i){x, y, 0};
-			printf("x: %f\ty: %f\n", z.pr, z.pi);
 			pix_to_cplx(&z, &pixel, data);
+			// printf("x: %f\ty: %f\n", z.pr, z.pi);
 			pixel.z = gc_sierpinski(&z, data);
 			ft_put_pix_to_img(&pixel, &data->mlx->screen);
 			y++;

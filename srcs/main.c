@@ -18,10 +18,12 @@ static void			which_fract(char *arg, t_data *data)
 		julia(data);
 	else if (!ft_strcmp(arg, "mandelbrot"))
 		mandelbrot(data);
-	else if (!ft_strcmp(arg, "sierpinski"))
-		sierpinski(data);
+	// else if (!ft_strcmp(arg, "sierpinski"))
+	// 	sierpinski(data);
 	else if (!ft_strcmp(arg, "douady"))
 		douady(data);
+	else if (!ft_strcmp(arg, "burning_ship"))
+		burning_ship(data);
 	else
 		error_input();
 }

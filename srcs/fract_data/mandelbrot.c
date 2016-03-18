@@ -15,7 +15,7 @@
 int					gc_mandelbrot(t_cplx *c, t_data *data)
 {
 	t_cplx			z;
-	float			tmp;
+	double			tmp;
 	int				it;
 
 	z.pr = data->z0.pr;
@@ -33,7 +33,7 @@ int					gc_mandelbrot(t_cplx *c, t_data *data)
 	if (it == data->it_max)
 		return (data->diverg);
 	return (mix_color(data->c_min, data->c_max,
-		(float)it / (float)data->it_max));
+		(double)it / (double)data->it_max));
 }
 
 void				mandelbrot(t_data *data)

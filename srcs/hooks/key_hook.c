@@ -57,9 +57,9 @@ int					key_hook(int key, t_data *data)
 	if (key == ESC)
 		key_esc();
 	else if (key == P)
-		data->it_max = (float)(data->it_max) * 1.2f;
+		data->it_max = (double)(data->it_max) * 1.2f;
 	else if (key == O)
-		data->it_max = (float)(data->it_max) / 1.2f;
+		data->it_max = (double)(data->it_max) / 1.2f;
 	else if (key == RETURN)
 		init_views(data);
 	else if (key == LARROW || key == RARROW || key == DARROW || key == UARROW)

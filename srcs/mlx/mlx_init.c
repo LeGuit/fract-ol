@@ -15,8 +15,8 @@
 
 void				init_views(t_data *data)
 {
-	data->delta = (t_cplx){3.f / (float)data->mlx->screen.width,
-		2.f / (float)data->mlx->screen.height};
+	data->delta = (t_cplx){3.f / (double)data->mlx->screen.width,
+		2.f / (double)data->mlx->screen.height};
 	data->it_max = 50;
 	data->mouse_set = 0;
 	data->bl = data->blbase;
@@ -29,10 +29,12 @@ static int			fdf_loop(t_data *data)
 {
 	ft_bzero(data->mlx->screen.data, data->mlx->screen.width
 		* data->mlx->screen.height * 4);
-	if (ft_strequ(data->name, "sierpinski"))
-		draw_sierpinski(data);
-	else if (ft_strequ(data->name, "mandelbrot"))
+	// if (ft_strequ(data->name, "sierpinski"))
+	// 	draw_sierpinski(data);
+	if (ft_strequ(data->name, "mandelbrot"))
 		draw(data, &gc_mandelbrot);
+	else if (ft_strequ(data->name, "burning"))
+		draw(data, &gc_burning);
 	else
 		draw(data, &gc_julia);
 	return (0);

@@ -40,8 +40,8 @@
 
 typedef struct		s_cplx
 {
-	float			pr;
-	float			pi;
+	double			pr;
+	double			pi;
 }					t_cplx;
 
 typedef struct		s_mlx
@@ -69,8 +69,8 @@ typedef struct		s_data
 
 typedef struct		s_vec2fc
 {
-	float			x;
-	float			y;
+	double			x;
+	double			y;
 	int				color;
 }					t_vec2fc;
 /*
@@ -79,10 +79,12 @@ typedef struct		s_vec2fc
 void				julia(t_data *data);
 int					gc_julia(t_cplx *c, t_data *data);
 void				mandelbrot(t_data *data);
-void				sierpinski(t_data *data);
-int					draw_sierpinski(t_data *data);
+// void				sierpinski(t_data *data);
+// int					draw_sierpinski(t_data *data);
 void				douady(t_data *data);
 int					gc_mandelbrot(t_cplx *c, t_data *data);
+void				burning_ship(t_data *data);
+int					gc_burning(t_cplx *c, t_data *data);
 void				pix_to_cplx(t_cplx *z, t_vec3i *pixel, t_data *data);
 /*
 ** MLX

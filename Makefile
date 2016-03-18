@@ -28,8 +28,8 @@ LIST =	main \
 		error/error \
 		fract_data/mandelbrot \
 		fract_data/julia \
-		fract_data/sierpinski \
 		fract_data/douady_rabbit \
+		fract_data/burning_ship \
 		mlx/new_image \
 		mlx/mlx_init \
 		hooks/key_hook \
