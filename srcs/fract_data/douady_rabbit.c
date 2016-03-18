@@ -16,6 +16,6 @@ void				douady(t_data *data)
 {
 	ft_bzero(data->name, 16);
 	ft_strcpy(data->name, "douady");
-	data->bl = (t_cplx){-1.5f, -1.f};
+	data->blbase = (t_cplx){-1.5f, -1.f};
 	data->z0 = (t_cplx){-0.123f, 0.745f};
 }

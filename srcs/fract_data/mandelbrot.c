@@ -40,7 +40,7 @@ void				mandelbrot(t_data *data)
 {
 	ft_bzero(data->name, 16);
 	ft_strcpy(data->name, "mandelbrot");
-	data->bl = (t_cplx){-2.f, -1.f};
+	data->blbase = (t_cplx){-2.f, -1.f};
 	data->z0.pr = 0;
 	data->z0.pi = 0;
 }

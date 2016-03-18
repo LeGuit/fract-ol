@@ -12,6 +12,7 @@
 
 #include "fractol.h"
 #include "mlx.h"
+#include <stdio.h>
 
 static float		pow(int nb, int pow)
 {
@@ -62,6 +63,7 @@ int					draw_sierpinski(t_data *data)
 		while (y < data->mlx->screen.height)
 		{
 			pixel = (t_vec3i){x, y, 0};
+			printf("x: %f\ty: %f\n", z.pr, z.pi);
 			pix_to_cplx(&z, &pixel, data);
 			pixel.z = gc_sierpinski(&z, data);
 			ft_put_pix_to_img(&pixel, &data->mlx->screen);
@@ -78,5 +80,5 @@ void				sierpinski(t_data *data)
 {
 	ft_bzero(data->name, 16);
 	ft_strcpy(data->name, "sierpinski");
-	data->bl = (t_cplx){-0.1f, -0.f};
+	data->blbase = (t_cplx){-0.1f, -0.f};
 }

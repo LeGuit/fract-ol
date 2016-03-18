@@ -56,6 +56,7 @@ typedef struct		s_data
 	t_mlx			*mlx;
 	char			name[16];
 	t_cplx			bl;
+	t_cplx			blbase;
 	t_cplx			delta;
 	t_cplx			z0;
 	t_cplx			c;

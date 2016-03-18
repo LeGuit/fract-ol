@@ -19,6 +19,7 @@ void				init_views(t_data *data)
 		2.f / (float)data->mlx->screen.height};
 	data->it_max = 50;
 	data->mouse_set = 0;
+	data->bl = data->blbase;
 	data->c_min = 0x000000;
 	data->c_max = 0x00FF00;
 	data->diverg = 0x000000;
