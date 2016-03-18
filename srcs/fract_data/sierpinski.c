@@ -64,7 +64,6 @@ int					draw_sierpinski(t_data *data)
 		{
 			pixel = (t_vec3i){x, y, 0};
 			pix_to_cplx(&z, &pixel, data);
-			// printf("x: %f\ty: %f\n", z.pr, z.pi);
 			pixel.z = gc_sierpinski(&z, data);
 			ft_put_pix_to_img(&pixel, &data->mlx->screen);
 			y++;

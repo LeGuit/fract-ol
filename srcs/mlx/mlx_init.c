@@ -29,8 +29,6 @@ static int			fdf_loop(t_data *data)
 {
 	ft_bzero(data->mlx->screen.data, data->mlx->screen.width
 		* data->mlx->screen.height * 4);
-	// if (ft_strequ(data->name, "sierpinski"))
-	// 	draw_sierpinski(data);
 	if (ft_strequ(data->name, "mandelbrot"))
 		draw(data, &gc_mandelbrot);
 	else if (ft_strequ(data->name, "burning"))
@@ -51,6 +49,7 @@ void				mlx_start(t_data *data)
 	init_views(data);
 	mlx_key_hook(mlx.win_ptr, key_hook, data);
 	mlx_mouse_hook(mlx.win_ptr, mouse_hook, data);
+	mlx_expose_hook(mlx.win_ptr, fdf_loop, data);
 	mlx_hook(mlx.win_ptr, MOTION_NOTIFY, MOTION_MASK, hover_hook, data);
 	mlx_loop_hook(mlx.mlx_ptr, fdf_loop, data);
 	mlx_loop(mlx.mlx_ptr);

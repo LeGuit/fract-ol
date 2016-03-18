@@ -79,8 +79,6 @@ typedef struct		s_vec2fc
 void				julia(t_data *data);
 int					gc_julia(t_cplx *c, t_data *data);
 void				mandelbrot(t_data *data);
-// void				sierpinski(t_data *data);
-// int					draw_sierpinski(t_data *data);
 void				douady(t_data *data);
 int					gc_mandelbrot(t_cplx *c, t_data *data);
 void				burning_ship(t_data *data);
